@@ -4,17 +4,22 @@ using namespace solution;
 
 int main()
 {
+   string matrixTitle = "inputMatrix.txt",
+      vectorTitle = "inputVector.txt",
+      sizeTitle = "inputSize.txt";
+
    unsigned int size = 0;
-   size = inputSize();
+
    double* inArr = new double(size),
       * inVec = new double(size);
 
-   inputMatrix(inArr);
-   inputVector(inVec);
+   size = inputFromFile1(sizeTitle);
+   
+   inArr = inputFromFile(matrixTitle);
+   inVec = inputFromFile(vectorTitle);
 
    Matrix m(size);
    m.Conn();
-
    delete inArr, inVec;
 
    return 0;

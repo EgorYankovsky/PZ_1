@@ -3,16 +3,11 @@
 #include <fstream>
 using namespace std;
 
-//unsigned int inputSize();
-//void inputMatrix(double* arr);
-//void inputVector(double* vec);
-
 
 namespace solution
 {
-   unsigned int inputSize();
-   void inputMatrix(double* arr);
-   void inputVector(double* vec);
+   double* inputFromFile(string title);
+   unsigned int inputFromFile1(string title);
 
 
    class Matrix

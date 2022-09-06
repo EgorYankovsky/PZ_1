@@ -6,64 +6,43 @@
 
 namespace solution
 {
-   unsigned int inputSize()
+   double* inputFromFile(string title)
    {
-      unsigned int n;
-      string name = "inputSize.txt";
-      ifstream input(name);
-
-      if (!input.is_open())
+      try
       {
-         cout << "File " << name << " doesn't exist\n";
-         exit(0);
-      }
+         ifstream input(title);
+         int i = 0;
+         double* arr = new double();
 
-      input >> n;
-      input.close();
-      cout << "Size inserted\n";
-      return n;
+         while (!EOF)
+         {
+            input >> arr[i];
+            i++;
+         }
+         input.close();
+         cout << "Array inserted\n";
+         return arr;
+      }
+      catch (ios::failure &e)
+      {
+         cerr << "Exception: " << e.what() << endl;
+      }
    }
 
-   void inputMatrix(double* arr)
+   unsigned int inputFromFile1(string title)
    {
-      string name = "inputMatrix.txt";
-      ifstream input(name);
-      int i = 0;
-
-      if (!input.is_open())
-      {
-         cout << "File " << name << " doesn't exist\n";
-         exit(0);
+      try {
+         ifstream input(title);
+         unsigned int elem;
+         input >> elem;
+         input.close();
+         cout << "Size inserted\n";
+         return elem;
       }
-
-      while (!EOF)
+      catch (ios::failure &e)
       {
-         input >> arr[i];
-         i++;
+         cerr << "Exception: " << e.what() << endl;
       }
-      input.close();
-      cout << "Matrix inserted\n";
-   }
-
-   void inputVector(double* vec)
-   {
-      string name = "InputVector.txt";
-      ifstream input(name);
-      int i = 0;
-
-      if (!input.is_open())
-      {
-         cout << "File " << name << " doesn't exist\n";
-         exit(0);
-      }
-
-      while (!EOF)
-      {
-         input >> vec[i];
-         i++;
-      }
-      input.close();
-      cout << "Vector inserted\n";
    }
 
    /**********************************************
