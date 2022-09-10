@@ -13,10 +13,10 @@ int main()
    double* inArr = new double(size),
       * inVec = new double(size);
 
-   size = inputFromFile1(sizeTitle);
+   size = inputSize();
    
-   inArr = inputFromFile(matrixTitle);
-   inVec = inputFromFile(vectorTitle);
+   //inArr = inputFromFile(matrixTitle);
+   //inVec = inputFromFile(vectorTitle);
 
    Matrix m(size);
    m.Conn();
