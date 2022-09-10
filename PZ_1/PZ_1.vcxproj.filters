@@ -34,10 +34,16 @@
     <Text Include="inputVector.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
-    <Text Include="inputMatrix.txt">
+    <Text Include="inputAU.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
     <Text Include="output.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="InputAI.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="InputDi.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

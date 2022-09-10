@@ -4,23 +4,23 @@ using namespace solution;
 
 int main()
 {
-   string matrixTitle = "inputMatrix.txt",
-      vectorTitle = "inputVector.txt",
-      sizeTitle = "inputSize.txt";
+   string AU_Title = "inputAU.txt",
+      AI_Title = "inputAI.txt",
+      Di_Title = "inputDi.txt",
+      vectorTitle = "inputVector.txt";
 
    unsigned int size = 0;
+   vector<double> matrAl, matrAU, matrDi, matrVec;
 
-   double* inArr = new double(size),
-      * inVec = new double(size);
 
    size = inputSize();
+   matrAl = inputArr(AI_Title);
+   matrAU = inputArr(AU_Title);
+   matrDi = inputArr(Di_Title);
+   matrVec = inputArr(vectorTitle);
    
-   //inArr = inputFromFile(matrixTitle);
-   //inVec = inputFromFile(vectorTitle);
-
    Matrix m(size);
    m.Conn();
-   delete inArr, inVec;
 
    return 0;
 }

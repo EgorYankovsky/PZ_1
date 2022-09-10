@@ -8,83 +8,43 @@ namespace solution
 {
    unsigned int inputSize()
    {
-      unsigned int n;
-      string name = "inputSize.txt";
-      ifstream input(name);
-
-      if (!input.is_open())
+      try
       {
-         cout << "File " << name << " doesn't exist\n";
-         exit(0);
+         unsigned int n;
+         string name = "inputSize.txt";
+         ifstream input(name);
+         input >> n;
+         input.close();
+         return n;
       }
-
-      input >> n;
-      input.close();
-      cout << "Size inserted\n";
-      return n;
+      catch (const ios::failure &e)
+      {
+         cerr << e.what() << endl;
+      }
    }
 
-   void inputDi(vector <double> arr)
+   vector<double> inputArr(string name)
    {
-      string name = "inputDi.txt";
-      ifstream input(name);
-      int i = 0;
-
-      if (!input.is_open())
+      try
       {
-         cout << "File " << name << " doesn't exist\n";
-         exit(0);
-      }
+         ifstream input(name);
+         vector<double> arr;
+         int i = 0;
+         double a = 0;
 
-      while (!EOF)
+         while (input.good())
+         {
+            input >> a;
+            arr.push_back(a);
+            i++;
+         }
+         input.close();
+         return arr;
+      }
+      catch (const ios::failure &e)
       {
-         input >> arr[i];
-         i++;
+         cerr << e.what() << endl;
       }
-      input.close();
-      cout << "Diag inserted\n";
-   }
-
-   void inputAu(vector <double> arr)
-   {
-      string name = "InputAu.txt";
-      ifstream input(name);
-      int i = 0;
-
-      if (!input.is_open())
-      {
-         cout << "File " << name << " doesn't exist\n";
-         exit(0);
-      }
-
-      while (!EOF)
-      {
-         input >> arr[i];
-         i++;
-      }
-      input.close();
-      cout << "Au inserted\n";
-   }
-
-   void inputAl(vector <double> arr)
-   {
-      string name = "InputAl.txt";
-      ifstream input(name);
-      int i = 0;
-
-      if (!input.is_open())
-      {
-         cout << "File " << name << " doesn't exist\n";
-         exit(0);
-      }
-
-      while (!EOF)
-      {
-         input >> arr[i];
-         i++;
-      }
-      input.close();
-      cout << "Al inserted\n";
    }
 
    int width(int n, vector <double> arr)

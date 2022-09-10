@@ -146,7 +146,9 @@
     <ClInclude Include="Header.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="inputMatrix.txt" />
+    <Text Include="InputAI.txt" />
+    <Text Include="inputAU.txt" />
+    <Text Include="InputDi.txt" />
     <Text Include="inputSize.txt" />
     <Text Include="inputVector.txt" />
     <Text Include="output.txt" />
