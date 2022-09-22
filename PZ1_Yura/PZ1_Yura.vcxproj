@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{7e25d1fe-4205-42a0-bfa1-a420e672e673}</ProjectGuid>
-    <RootNamespace>PZ1</RootNamespace>
+    <ProjectGuid>{77688906-0b6c-479e-96b8-300e5a459e99}</ProjectGuid>
+    <RootNamespace>PZ1Yura</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,16 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="additional.cpp" />
-    <ClCompile Include="source.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Header.h" />
+    <ClCompile Include="PZ1_Yura.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
-    <Text Include="output.txt" />
-    <Text Include="size.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

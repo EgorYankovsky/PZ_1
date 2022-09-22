@@ -15,26 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="additional.cpp">
+    <ClCompile Include="PZ1_Yura.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="output.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
     <Text Include="input.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="size.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>
