@@ -1,4 +1,4 @@
-#include "Matrix.h"
+#include "Header.h"
 
 namespace solution
 {
@@ -55,33 +55,55 @@ namespace solution
       }
    }
 
-   void Matrix::Writefile()
+   void Matrix::Writefile(string fileName)
    {
       try
       {
-         ofstream outfile("output.txt");
+         ofstream outfile(fileName);
 
-         outfile << setprecision(5);
+         //outfile << setprecision(5);
 
          for (int i = 0; i < n; i++)
          {
             for (int j = 0; j < n; j++)
             {
-               if (i == j)
-                  outfile << di[i] << " ";
-               else if (j > i)
+               if (fileName[fileName.size() - 1] == 'v')
                {
-                  if (j - i <= ht)
-                     outfile << au[j][ht - j + i] << " ";
-                  else
-                     outfile << 0 << " ";
+                  if (i == j)
+                     outfile << di[i] << ";";
+                  else if (j > i)
+                  {
+                     if (j - i <= ht)
+                        outfile << au[j][ht - j + i] << ";";
+                     else
+                        outfile << 0 << ";";
+                  }
+                  else if (i > j)
+                  {
+                     if (i - j <= ht)
+                        outfile << al[i][ht - i + j] << ";";
+                     else
+                        outfile << 0 << ";";
+                  }
                }
-               else if (i > j)
+               else
                {
-                  if (i - j <= ht)
-                     outfile << al[i][ht - i + j] << " ";
-                  else
-                     outfile << 0 << " ";
+                  if (i == j)
+                     outfile << di[i] << " ";
+                  else if (j > i)
+                  {
+                     if (j - i <= ht)
+                        outfile << au[j][ht - j + i] << " ";
+                     else
+                        outfile << 0 << " ";
+                  }
+                  else if (i > j)
+                  {
+                     if (i - j <= ht)
+                        outfile << al[i][ht - i + j] << " ";
+                     else
+                        outfile << 0 << " ";
+                  }
                }
             }
             outfile << "\n";
@@ -90,7 +112,12 @@ namespace solution
          outfile << "\n";
 
          for (int i = 0; i < n; i++)
-            outfile << F[i] << " ";
+         {
+            if (fileName[fileName.size() - 1] == 'v')
+               outfile << F[i] << ";";
+            else
+               outfile << F[i] << " ";
+         }
 
          outfile.close();
       }
@@ -170,6 +197,153 @@ namespace solution
       LyF();
       Uxy();
    }
+
+   void Matrix::number_obus_read()
+   {
+      try
+      {
+         double q = 1;
+         fstream infile("in.txt");
+
+         infile >> n >> ht;
+
+         if (ht * 2 + 1 > n)
+            flag = true;
+         else
+         {
+            F.resize(n);
+            di.resize(n);
+            al.resize(n);
+            au.resize(n);
+            if (!infile.eof())
+            {
+               for (int i = 0; i < n; i++)
+               {
+                  al[i].resize(ht);
+                  for (int j = 0; j < ht; j++)
+                     infile >> al[i][j];
+               }
+               for (int i = 0; i < n; i++)
+               {
+                  au[i].resize(ht);
+                  for (int j = 0; j < ht; j++)
+                     infile >> au[i][j];
+               }
+               int m = ht;
+               int h = 1;
+               for (int i = 0; i < n; i++)
+               {
+                  int sum = 0;
+                  if (i < n - 2)
+                  {
+                     for (int j = 0; j < ht; j++)
+                     {
+                        sum += al[i][j] + au[m][j];
+                        m--;
+                     }
+                  }
+                  else if (i == n - 2)
+                  {
+                     for (int j = 0; j < ht; j++)
+                        sum += al[i][j];
+                     sum += au[n - 1][ht - 1];
+                  }
+                  else
+                  {
+                     for (int j = 0; j < ht; j++)
+                        sum += al[i][j];
+                  }
+                  di[i] = sum * (-1);
+                  //if (i == 0)
+                  //{
+                  //   for (int u = 0; u < k; u++)
+                  //      q /= 10;
+                  //   di[i] += q;
+                  //}
+                  m = ht + i + 1;
+               }
+            }
+            number_obus_multiplication(8);
+            infile.close();
+         }
+      }
+      catch (ios::failure e)
+      {
+         cerr << e.what() << endl;
+      }
+      catch (out_of_range err)
+      {
+         cerr << err.what();
+      }
+      catch (...)
+      {
+         cerr << "Непредвиденная ошибка при вводе из файла !!!";
+      }
+      //for (int i = 0; i < n; i++)
+      //   cout << di[i] << ' ';
+   }
+
+   void Matrix::number_obus_multiplication(int k)
+   {
+         int m = ht,
+            h = 1, 
+            w = -1, 
+            e = ht + 1;
+
+         double q = 1.0;
+
+         for (int i = 0; i < k; i++)
+            q /= 10;
+         di[0] += q;
+
+         for (int i = 0; i < n; i++)
+         {
+            double mul = 0;
+
+            if (i < n - 2)
+            {
+               for (int j = 0; j < ht; j++)
+               {
+                  mul += al[i][j] * w + au[m][j] * e;
+                  e--;
+                  w++;
+                  m--;
+               }
+               mul += di[i] * (i + 1);
+               w--;
+               e += 3;
+            }
+            else if (i == n - 2)
+            {
+               for (int j = 0; j < ht; j++)
+               {
+                  mul += al[i][j] * w;
+                  w++;
+               }
+               w--;
+               mul += au[n - 1][ht - 1] * n;
+               mul += di[i] * (i + 1);
+            }
+            else
+            {
+               for (int j = 0; j < ht; j++)
+               {
+                  mul += al[i][j] * w;
+                  w++;
+               }
+               mul += di[i] * (i + 1);
+            }
+            F[i] = mul;
+            m = ht + i + 1;
+         }
+         //for (int i = 0; i < n; i++)
+         //   cout << F[i] << ' ';
+         SLAU();
+         Writefile("outPut.csv");
+         //cout << "Посмотри значения!!!!" << endl;
+         //cin.get();
+ }
+
    void Matrix::createGilbertMatrix(int k)
    {
       di.clear();

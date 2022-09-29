@@ -15,16 +15,17 @@ namespace solution
    private:
       vector<vector<double>> al, au;
       vector<double> di, F;
-      int n, m, ht;
+      int n, k, ht;
       void LU();
       void LyF();
       void Uxy();
    public:
       bool flag = false;
       void Readfile();
-      void Writefile();
-      void Multiplication();
+      void Writefile(string fileName);
       void SLAU();
+      void number_obus_read();
+      void number_obus_multiplication(int k);
       void createGilbertMatrix(int k);
    };
 }

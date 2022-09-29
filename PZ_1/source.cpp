@@ -6,6 +6,7 @@ void showmenu()
 {
    cout << "1 - Разложение LU и нахождение вектора x" << endl
       << "2 - Создать матрицу Гильберта" << endl
+      << "3 - Создать матрицу для теста" << endl
       << "Не целочисленное значение - выход" << endl;
 }
 
@@ -30,7 +31,7 @@ int main()
             exit(EXIT_FAILURE);
          }
          object.SLAU();
-         object.Writefile();
+         object.Writefile("output.txt");
          cin.get();
          break;
       }
@@ -41,16 +42,15 @@ int main()
          cin >> _k;
          object.createGilbertMatrix(_k);
          object.SLAU();
-         object.Writefile();
+         object.Writefile("output.txt");
          cin.get();
       }
-      default:
+      case 3:
       {
-         cout << "???" << endl;
-         break;
+         object.number_obus_read();
       }
       }
-      cout << "> ";
+      cout  << endl << "> ";
    }
    return 0;
 }

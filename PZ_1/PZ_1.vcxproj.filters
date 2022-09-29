@@ -34,8 +34,13 @@
     <Text Include="input.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
-    <Text Include="size.txt">
+    <Text Include="in.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="outPut.csv">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>
